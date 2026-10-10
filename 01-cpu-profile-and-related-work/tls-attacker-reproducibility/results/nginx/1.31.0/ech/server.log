@@ -1,0 +1,1 @@
+2026/08/12 14:46:57 [crit] 2#0: *5 SSL_do_handshake() failed (SSL: error:0A00006E:SSL routines::bad extension error:0A0C0103:SSL routines::internal error) while SSL handshaking, client: ::ffff:141.76.40.225, server: [::]:54321

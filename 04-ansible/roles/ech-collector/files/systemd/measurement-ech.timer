@@ -1,0 +1,10 @@
+[Unit]
+Description=measurement-ech
+
+[Timer]
+OnCalendar=*-*-* 4:30:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+  

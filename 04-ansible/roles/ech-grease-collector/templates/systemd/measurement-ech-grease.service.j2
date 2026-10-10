@@ -1,0 +1,14 @@
+[Unit]
+Description=measurement-ech-grease
+{% if cloud is defined %}
+# Turn of machine immediately after measurement
+SuccessAction=poweroff
+FailureAction=poweroff
+{% endif %}
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/make measure
+WorkingDirectory=/mnt/data01/ech-greased
+User=jmuecke
+UMask=0002

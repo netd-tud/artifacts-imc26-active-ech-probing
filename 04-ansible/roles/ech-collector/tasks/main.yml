@@ -1,0 +1,21 @@
+- name: Create mountpoint for data
+  ansible.builtin.file:
+    path: /mnt/data01/ech-scanner
+    state: directory
+    owner: jmuecke
+    group: netd_sync
+    mode: "2774"
+
+- name: Copy systemd timers
+  ansible.builtin.copy:
+    src: files/systemd/
+    dest: /etc/systemd/system/
+- name: Schedule executions
+  ansible.builtin.systemd:
+    name: measurement-ech.timer
+    enabled: false
+    daemon_reload: yes
+- name: Put Makefile
+  ansible.builtin.copy:
+    src: files/Makefile 
+    dest: /mnt/data01/ech-scanner

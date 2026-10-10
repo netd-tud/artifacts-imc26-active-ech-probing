@@ -1,0 +1,14 @@
+[32m14:49:07 [main] INFO : ClientDelegate - Processing client delegate host=localhost:54321 sniHostname=a.example.com
+[m[32m14:49:07 [main] INFO : Reflections - Reflections took 102 ms to scan 8 urls, producing 264 keys and 2184 values
+[m[32m14:49:08 [main] INFO : ClientTcpTransportHandler - Connection established from ports 48326 -> 54321
+[m[32m14:49:08 [main] INFO : CommonSendAction - Sending messages (client): (MESSAGE) Send:CLIENT_HELLO (RECORD) Send:Record{contentType=unspecified, protocolVersion=unspecified, length=unspecified} (TCP) Not configured
+[m[32m14:49:08 [main] INFO : CommonReceiveAction - Received Messages (client): LayerType: MESSAGE As Planned: true Containers: SERVER_HELLO, CHANGE_CIPHER_SPEC, ENCRYPTED_EXTENSIONS, CERTIFICATE, CERTIFICATE_VERIFY, FINISHED UnreadBytes: 0
+LayerType: RECORD As Planned: true Containers: Record{contentType=03 03, protocolVersion=unspecified, length=90}, Record{contentType=03 03, protocolVersion=unspecified, length=1}, Record{contentType=03 03, protocolVersion=unspecified, length=27}, Record{contentType=03 03, protocolVersion=unspecified, length=963}, Record{contentType=03 03, protocolVersion=unspecified, length=281}, Record{contentType=03 03, protocolVersion=unspecified, length=53} UnreadBytes: 0
+LayerType: TCP As Planned: true Containers: TCP{1445 Bytes} UnreadBytes: 0
+
+[m[32m14:49:11 [main] INFO : CommonReceiveAction - Received Messages (client): LayerType: MESSAGE As Planned: true Containers:  UnreadBytes: 0
+LayerType: RECORD As Planned: true Containers:  UnreadBytes: 0
+LayerType: TCP As Planned: true Containers: TCP{0 Bytes}, TCP{0 Bytes}, TCP{0 Bytes} UnreadBytes: 0
+
+[m[32m14:49:11 [main] INFO : DefaultWorkflowExecutor - Workflow executed as planned.
+[m

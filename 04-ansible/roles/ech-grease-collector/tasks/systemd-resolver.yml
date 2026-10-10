@@ -1,0 +1,12 @@
+- name: Create systemd resolver conf dir
+  ansible.builtin.file:
+    path: /etc/systemd/resolved.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+- name: Configure systemd resolver to use 9.9.9.11
+  ansible.builtin.copy:
+    src: files/dns_resolver.conf
+    dest: /etc/systemd/resolved.conf.d/dns_servers.conf
+    mode: "0644"

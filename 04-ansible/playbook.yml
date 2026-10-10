@@ -1,0 +1,43 @@
+- name: Toplist aggregation
+  hosts: meas-aggregate-toplists.research
+  become: true
+  roles:
+    - role: meas-aggregate-toplists
+      vars:
+        s3target: s3://jomu582f:netd-shared-research-data/tranco+crux.csv.zst
+
+- name: Initialize ech measurement machine
+  hosts: ech.research
+  become: true
+  roles:
+    - role: ech-collector
+    - role: ech-grease-collector
+      vars:
+        ech_greased_protos: h2
+        ech_greased_senders: 250
+        measurement_timer_enabled: true
+        s3source: s3://jomu582f:netd-shared-research-data/tranco+crux.csv.zst
+
+- name: Initialize ech-quic measurement machine 
+  hosts:
+    - ech-quic.research
+  become: true
+  roles:
+    - role: ech-collector
+    - role: ech-grease-collector
+      vars:
+        ech_greased_protos: h3
+        ech_greased_senders: 1200
+        measurement_timer_enabled: true
+        s3source: s3://jomu582f:netd-shared-research-data/tranco+crux.csv.zst
+
+- name: Initialize zdns collections and domainlist aggregation
+  hosts: ech-zdns.research
+  become: true
+  roles:
+    - role: zdns-collector
+      vars:
+        s3source: s3://jomu582f:netd-shared-research-data/tranco+crux.csv.zst
+        measurement_timer_enabled: true
+
+

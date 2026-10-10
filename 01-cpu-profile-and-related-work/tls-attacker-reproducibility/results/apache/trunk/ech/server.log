@@ -1,0 +1,11 @@
+[Wed Aug 12 14:49:07.497088 2026] [ssl:warn] [pid 1:tid 1] AH01906: a.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 14:49:07.497100 2026] [ssl:warn] [pid 1:tid 1] AH01909: a.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Aug 12 14:49:07.498396 2026] [ssl:warn] [pid 1:tid 1] AH01906: a.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 14:49:07.498403 2026] [ssl:warn] [pid 1:tid 1] AH01909: a.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Aug 12 14:49:07.499270 2026] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.5.1-dev (Unix) OpenSSL/3.4.1 configured -- resuming normal operations
+[Wed Aug 12 14:49:07.499278 2026] [core:notice] [pid 1:tid 1] AH00094: Command line: 'httpd -D FOREGROUND'
+[Wed Aug 12 14:49:07.500124 2026] [ssl:error] [pid 3:tid 8] (70014)End of file found: [client 141.76.40.225:52494] AH10373: SSL handshake was not completed, closing connection
+[Wed Aug 12 14:49:11.437176 2026] [ssl:error] [pid 3:tid 10] (70014)End of file found: [client 141.76.40.225:52510] AH10373: SSL handshake was not completed, closing connection
+[Wed Aug 12 14:49:15.413725 2026] [ssl:error] [pid 86:tid 88] (70014)End of file found: [client 141.76.40.225:47628] AH10373: SSL handshake was not completed, closing connection
+[Wed Aug 12 14:49:23.410183 2026] [ssl:error] [pid 86:tid 89] (70014)End of file found: [client 141.76.40.225:47636] AH10373: SSL handshake was not completed, closing connection
+[Wed Aug 12 14:49:24.325722 2026] [ssl:error] [pid 2:tid 7] (20014)Internal error (specific information not available): [client 141.76.40.225:45128] AH10373: SSL handshake was not completed, closing connection

@@ -1,0 +1,3 @@
+data_dir: /mnt/data01
+folder: zdns-https-rr
+threads: 500

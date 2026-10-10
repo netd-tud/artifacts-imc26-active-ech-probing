@@ -1,0 +1,12 @@
+[submodule "02-echtool"]
+	path = 02-echtool
+	url = git@github.com:netd-tud/echtool.git
+[submodule "06-ech-analysis/tools/zdns"]
+	path = 06-ech-analysis/tools/zdns
+	url = https://github.com/zmap/zdns.git
+[submodule "06-ech-analysis/tools/zgrab2"]
+	path = 06-ech-analysis/tools/zgrab2
+	url = https://github.com/zmap/zgrab2.git
+[submodule "07-zgrab-ech"]
+	path = 07-zgrab-ech
+	url = git@github.com:netd-tud/zgrab2-ech

@@ -1,0 +1,15 @@
+[32m14:48:00 [main] INFO : ClientDelegate - Processing client delegate host=localhost:54321 sniHostname=a.example.com
+[m[32m14:48:00 [main] INFO : Reflections - Reflections took 95 ms to scan 8 urls, producing 264 keys and 2184 values
+[m[32m14:48:00 [main] INFO : ClientTcpTransportHandler - Connection established from ports 60898 -> 54321
+[m[32m14:48:00 [main] INFO : CommonSendAction - Sending messages (client): (MESSAGE) Send:CLIENT_HELLO (RECORD) Send:Record{contentType=unspecified, protocolVersion=unspecified, length=unspecified} (TCP) Not configured
+[m[32m14:48:00 [main] INFO : CommonReceiveAction - Received Messages (client): LayerType: MESSAGE As Planned: false Containers: Alert(FATAL,DECODE_ERROR) UnreadBytes: 0
+LayerType: RECORD As Planned: true Containers: Record{contentType=03 03, protocolVersion=unspecified, length=2} UnreadBytes: 0
+LayerType: TCP As Planned: true Containers: TCP{7 Bytes}, TCP{0 Bytes}, TCP{0 Bytes}, TCP{0 Bytes}, TCP{0 Bytes} UnreadBytes: 0
+
+[m[32m14:48:00 [main] INFO : CommonReceiveAction - Received Messages (client): LayerType: MESSAGE As Planned: true Containers:  UnreadBytes: 0
+LayerType: RECORD As Planned: true Containers:  UnreadBytes: 0
+LayerType: TCP As Planned: true Containers: TCP{0 Bytes}, TCP{0 Bytes}, TCP{0 Bytes} UnreadBytes: 0
+
+[m[33m14:48:00 [main] WARN : LayerStackProcessingResult - LayerStackProcessingResult failed: Layer MESSAGE, did not execute as planned
+[m[32m14:48:00 [main] INFO : DefaultWorkflowExecutor - Workflow was not executed as planned.
+[m

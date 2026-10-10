@@ -1,0 +1,9 @@
+[Unit]
+Description=measurement-ech
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/flock /mnt/data01/measurement-in-progress /usr/bin/make measure
+WorkingDirectory=/mnt/data01/ech-scanner
+User=jmuecke
+UMask=0002

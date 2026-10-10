@@ -1,0 +1,7 @@
+<config>
+  <defaultClientKeyShareNamedGroups>
+      <defaultClientKeyShareNamedGroup>ECDH_X25519</defaultClientKeyShareNamedGroup>
+      <defaultClientKeyShareNamedGroup>SECP256R1</defaultClientKeyShareNamedGroup>
+      <defaultClientKeyShareNamedGroup>SECP384R1</defaultClientKeyShareNamedGroup>
+  </defaultClientKeyShareNamedGroups>
+</config>

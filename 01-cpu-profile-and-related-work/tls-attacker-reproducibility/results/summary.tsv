@@ -1,0 +1,25 @@
+server	version	variant	TLS-grease	niere-unknown-extension-with-value	parsable-ech-extension	unparsable-ech-as-raw-extension	verdict
+apache	2.4.67	base	-	-	-	-	Not ECH-aware
+apache	trunk	ech	-	-	unk-ee	decode_error	ECH-aware (rejects 0xFE0D with decode_error)
+apache	trunk	ech-disabled	-	-	-	-	Not ECH-aware
+nginx	1.21.0	base	-	-	-	-	Not ECH-aware
+nginx	1.22.0	base	-	-	-	-	Not ECH-aware
+nginx	1.24.0	base	-	-	-	-	Not ECH-aware
+nginx	1.26.0	base	-	-	-	-	Not ECH-aware
+nginx	1.27.0	base	-	-	-	-	Not ECH-aware
+nginx	1.28.0	base	-	-	-	-	Not ECH-aware
+nginx	1.29.4	base	-	-	-	-	Not ECH-aware
+nginx	1.29.4	boringssl	-	-	-	decode_error	ECH NEVER ENABLED on BoringSSL (see server.log)
+nginx	1.29.4	boringssl-disabled	-	-	-	decode_error	ECH-aware (rejects 0xFE0D with decode_error)
+nginx	1.29.4	ech	-	-	unk-ee	decode_error	ECH-aware (rejects 0xFE0D with decode_error)
+nginx	1.29.4	ech-disabled	-	-	-	-	Not ECH-aware
+nginx	1.30.0	base	-	-	-	-	Not ECH-aware
+nginx	1.30.0	boringssl	-	-	-	decode_error	ECH NEVER ENABLED on BoringSSL (see server.log)
+nginx	1.30.0	boringssl-disabled	-	-	-	decode_error	ECH-aware (rejects 0xFE0D with decode_error)
+nginx	1.30.0	ech	-	-	unk-ee	decode_error	ECH-aware (rejects 0xFE0D with decode_error)
+nginx	1.30.0	ech-disabled	-	-	-	-	Not ECH-aware
+nginx	1.31.0	base	-	-	-	-	Not ECH-aware
+nginx	1.31.0	boringssl	-	-	-	decode_error	ECH NEVER ENABLED on BoringSSL (see server.log)
+nginx	1.31.0	boringssl-disabled	-	-	-	decode_error	ECH-aware (rejects 0xFE0D with decode_error)
+nginx	1.31.0	ech	-	-	unk-ee	decode_error	ECH-aware (rejects 0xFE0D with decode_error)
+nginx	1.31.0	ech-disabled	-	-	-	-	Not ECH-aware

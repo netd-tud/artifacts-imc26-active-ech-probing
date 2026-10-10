@@ -1,0 +1,66 @@
+- name: Create mountpoint for data
+  ansible.builtin.file:
+    path: "{{ data_dir }}/{{ folder }}/raw"
+    state: directory
+    owner: jmuecke
+    group: netd_sync
+    mode: "2774"
+- name: Ensure correct permissions
+  ansible.builtin.file:
+    path: "{{ data_dir }}"
+    state: directory
+    owner: jmuecke
+    group: netd_sync
+    mode: "2774"
+
+- name: Install requires snaps
+  community.general.snap:
+    classic: true
+    name:
+      - go
+
+- name: Clone zgrab2
+  ansible.builtin.git:
+    repo: git@github.com:netd-tud/zgrab2.git
+    dest: "{{ data_dir }}/{{ folder }}/zgrab2"
+    accept_newhostkey: true
+
+- name: Build zgrab2
+  ansible.builtin.command:
+    cmd: make -B
+    chdir: "{{ data_dir }}/{{ folder }}/zgrab2"
+
+
+- name: Copy systemd timers
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: /etc/systemd/system/{{ item | basename | regex_replace('\.j2$', '') }}
+    mode: "0644"
+    owner: root
+    group: root
+  with_fileglob:
+    - "../templates/systemd/*.j2"
+
+
+- name: Put Makefile
+  ansible.builtin.template:
+    src: templates/Makefile
+    dest: /mnt/data01/ech-greased
+    mode: "0775"
+    owner: jmuecke
+    group: jmuecke
+
+- name: Schedule executions
+  ansible.builtin.systemd:
+    name: measurement-ech-grease.timer
+    enabled: "{{ measurement_timer_enabled }}"
+    state: started
+    daemon_reload: true
+  when:
+    - measurement_timer_enabled is defined
+
+- name: Include bind
+  ansible.builtin.import_tasks: bind.yml
+
+- name: Include iptables
+  ansible.builtin.import_tasks: iptables.yml

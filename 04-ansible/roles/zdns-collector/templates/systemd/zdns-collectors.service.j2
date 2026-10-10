@@ -1,0 +1,14 @@
+[Unit]
+Description=zdns-collectors
+{% if cloud is defined %}
+# Turn of machine immediately after measurement
+SuccessAction=poweroff
+FailureAction=poweroff
+{% endif %}
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/flock /mnt/data01/measurement-in-progress /usr/bin/make measure
+WorkingDirectory={{ data_dir }}/{{ folder }}
+User=jmuecke
+UMask=0002

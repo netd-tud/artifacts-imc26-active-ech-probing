@@ -1,0 +1,56 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "ech_discovery"
+version = "0.0.1"
+description = "Data analysis for active ECH measurements"
+authors = [{ name = "Jonas M\u00fccke" }]
+
+readme = "README.md"
+classifiers = ["Programming Language :: Python :: 3"]
+requires-python = "~=3.13.0"
+dependencies = [
+  "altair",
+  "cartopy>=0.25.0",
+  "click",
+  "country-converter>=1.3.2",
+  "duckdb>=1.4.1",
+  "geoip2>=5.1.0",
+  "great_tables",
+  "jupyter>=1.1.1",
+  "kaleido>=1.3.0",
+  "loguru",
+  "matplotlib",
+  "maxminddb>=2.8.2",
+  "ndpi",
+  "pandas",
+  "polars",
+  "publicsuffixlist>=1.0.2.20251031",
+  "pyarrow>=25.0.1",
+  "python-dotenv>=1.2.2",
+  "requests",
+  "scipy>=1.18.1",
+  "seaborn>=0.13.2",
+  "tqdm",
+]
+
+[project.scripts]
+data = "ech_discovery.cli:cli"
+
+
+[tool.ruff]
+line-length = 99
+src = ["ech_discovery"]
+include = ["pyproject.toml", "ech_discovery/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"] # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["ech_discovery"]
+force-sort-within-sections = true
+
+[tool.uv.sources]
+ndpi = { git = "https://github.com/jmuecke/ndpi.git", tag = "v0.2.0" }

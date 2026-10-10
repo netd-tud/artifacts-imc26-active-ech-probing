@@ -1,0 +1,11 @@
+/06-ech-analysis/.virtual_documents/notebooks
+/06-ech-analysis/.gitignore
+
+# Symlink to machine-local data store
+/06-ech-analysis/data
+# Stale: zdns/zgrab2 are registered as submodules of this repo now
+/06-ech-analysis/.gitmodules
+/06-ech-analysis/notebooks/background
+/06-ech-analysis/notebooks/background
+/06-ech-analysis/notebooks/background
+/01-cpu-profile-and-related-work/tls-attacker-reproducibility/.build/

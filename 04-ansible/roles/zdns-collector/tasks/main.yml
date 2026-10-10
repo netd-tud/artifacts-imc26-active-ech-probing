@@ -1,0 +1,58 @@
+- name: Create mountpoint for data
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: jmuecke
+    group: netd_sync
+    mode: "2774"
+  loop:
+    - "{{ data_dir }}/{{ folder }}"
+    - "{{ data_dir }}/"
+
+- name: Install required snaps
+  community.general.snap:
+    classic: true
+    name:
+      - go
+
+- name: Clone zdns
+  ansible.builtin.git:
+    repo: https://github.com/zmap/zdns.git
+    dest: "{{ data_dir }}/{{ folder }}/zdns"
+    accept_newhostkey: true
+  notify: Build zdns
+
+- name: Configure s3 storage
+  ansible.builtin.template:
+    src: templates/s3cfg-netds3o.j2
+    dest: /home/jmuecke/.s3cfg-netds3o
+    mode: "0755"
+    owner: jmuecke
+    group: jmuecke
+
+- name: Copy systemd timers
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: /etc/systemd/system/{{ item | basename | regex_replace('\.j2$', '') }}
+    mode: "0644"
+    owner: root
+    group: root
+  with_fileglob:
+    - "../templates/systemd/*.j2"
+
+- name: Put Makefile
+  ansible.builtin.template:
+    src: templates/Makefile.j2
+    dest: "{{ data_dir }}/{{ folder }}/Makefile"
+    mode: "0775"
+    owner: jmuecke
+    group: jmuecke
+
+- name: Schedule executions
+  ansible.builtin.systemd:
+    name: zdns-collectors.timer
+    enabled: true
+    state: started
+    daemon_reload: true
+  when:
+    - measurement_timer_enabled is defined

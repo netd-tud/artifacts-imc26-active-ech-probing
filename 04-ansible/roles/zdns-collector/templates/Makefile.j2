@@ -1,0 +1,55 @@
+SHELL=/bin/bash
+
+# Customize this before you start any measurements
+measurement_name=ech-2024-06.txt
+
+### Default configuration proven to be useful
+# Raw measuremnt data
+raw_data_dir=raw
+# Timestamp each measurement
+timestamp:=$(shell date --iso-8601=seconds --utc | sed 's/:/_/g')
+work_dir:=${raw_data_dir}/${timestamp}
+
+# Internal data
+internal_dir=internal
+blocklist_dir=${internal_dir}/blocklists
+blocklist_file=${blocklist_dir}/${measurement_name}
+
+RR_TYPE=HTTPS
+
+
+internal_dir:
+	-mkdir -p ${internal_dir}
+
+pull-blocklist: internal_dir
+	git config --global --add safe.directory /mnt/data01/blocklists
+	git -C ${blocklist_dir} pull || GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new" git clone git@github.com:netd-tud/active-measurements-blocklists.git ${blocklist_dir}
+
+data:
+	-mkdir -p ${raw_data_dir}
+
+pull-names:
+	s3cmd sync --no-preserve {{ s3source }} names.txt.zst
+	unzstd -f names.txt.zst
+
+measure: data pull-blocklist pull-names
+	mkdir ${work_dir}
+	#cp ${blocklist_file} ${work_dir}/blocklist.txt
+	# Add your measurement commands here.
+	{{data_dir}}/{{folder}}/zdns/zdns --input-file names.txt --threads {{ threads }} --name-servers 8.8.8.8,1.1.1.1,8.8.4.4,1.0.0.1 $(RR_TYPE) | zstd > results.json.zst
+	mv results.json.zst ${work_dir}
+	cp names.txt.zst ${work_dir}
+{%if cloud %}
+	$(MAKE) push timestamp=$(timestamp)
+
+
+push: REGION=$(shell curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d'/' -f4 | sed 's/\(.*\)-.*/\1/')
+push: ROLE=$(shell curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/role)
+push: 
+	curl -H "Metadata-Flavor: Google" \
+  "http://metadata.google.internal/computeMetadata/v1/?recursive=true&alt=json" > ${work_dir}/instance.json
+	s3cmd -c /home/jmuecke/.s3cfg-netds3o put -r ${work_dir} s3://netds3o:research-data/jmuecke/ech-discovery/data/raw/gcloud/${ROLE}/${REGION}/
+	# Remove after upload to keep free storage
+	rm -r ${work_dir}
+
+{% endif %}

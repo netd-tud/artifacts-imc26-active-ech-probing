@@ -1,0 +1,21 @@
+{
+  "host": "127.0.0.1",
+  "port": "54321",
+  "sni": "a.example.com",
+  "ech": false,
+  "parallel": 4,
+  "warmup": 1000,
+  "requested": 50000,
+  "ok": 50000,
+  "failed": 0,
+  "ech_accepted": 0,
+  "wall_seconds": 27.0938,
+  "conns_per_sec": 1845.4,
+  "handshake_ms": {
+    "mean": 1.3094,
+    "p50": 1.392,
+    "p90": 1.599,
+    "p99": 1.79,
+    "max": 2.568
+  }
+}

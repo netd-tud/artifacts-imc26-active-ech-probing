@@ -1,0 +1,22 @@
+- name: Ensure iptables is installed
+  package:
+    name:
+      - iptables
+      - iptables-persistent
+    state: present
+- name: Add iptables rules to drop packets to blocked prefixes
+  iptables:
+    chain: OUTPUT
+    destination_port: 443
+    protocol: udp
+    destination: "{{ item }}"
+    jump: DROP
+    comment: "Block traffic to {{ item }}"
+  loop:
+    - REDACTED
+- name: Save iptables rules (Debian/Ubuntu)
+  shell: iptables-save > /etc/iptables/rules.v4
+  when: ansible_os_family == "Debian"
+- name: Save iptables rules (RedHat/CentOS)
+  shell: service iptables save
+  when: ansible_os_family == "RedHat"

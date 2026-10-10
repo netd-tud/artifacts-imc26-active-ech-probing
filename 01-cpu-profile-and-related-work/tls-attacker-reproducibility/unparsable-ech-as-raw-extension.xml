@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workflowTrace>
+    <!-- Send ClientHello -->
+    <Send>
+        <configuredMessages>
+            <ClientHello>
+                <extensions>
+                    <ECPointFormat/>
+                    <EllipticCurves/>
+                    <SignatureAndHashAlgorithmsExtension/>
+                    <RenegotiationInfoExtension/>
+                    <ServerNameIndicationExtension/>
+                    <SupportedVersions/>
+                    <KeyShareExtension>
+                      <keyShareList>
+                          <groupConfig>ECDH_X25519</groupConfig>
+                          <privateKey>65535</privateKey>
+                      </keyShareList>
+                      <keyShareList>
+                          <groupConfig>SECP256R1</groupConfig>
+                          <privateKey>65535</privateKey>
+                      </keyShareList>
+                      <keyShareList>
+                          <groupConfig>SECP384R1</groupConfig>
+                          <privateKey>65535</privateKey>
+                      </keyShareList>
+                    </KeyShareExtension>
+                    <UnknownExtension>
+                      <extensionBytes>
+                        <modifications>
+                            <byteArrayExplicitValueModification>
+                                <explicitValue>FE 0D 00 05 48 65 6C 6C 6F</explicitValue>
+                            </byteArrayExplicitValueModification>
+                        </modifications>
+                      </extensionBytes>
+                    </UnknownExtension>
+                  </extensions>
+            </ClientHello>
+        </configuredMessages>
+        <configuredRecords>
+            <record/>
+        </configuredRecords>
+    </Send>
+    
+    <!-- Receive server response -->
+    <Receive>
+        <expectedMessages>
+          <ServerHello/>
+          <ChangeCipherSpec/>
+          <EncryptedExtensions/>
+          <Certificate/>
+          <CertificateVerify/>
+          <Finished/>
+        </expectedMessages>
+    </Receive>
+    <GenericReceive/>
+</workflowTrace>

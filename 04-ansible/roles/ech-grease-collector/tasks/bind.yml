@@ -1,0 +1,43 @@
+- name: Install bind
+  ansible.builtin.apt:
+    name: bind9
+    state: present
+
+- name: Configure BIND named options
+  ansible.builtin.lineinfile:
+    path: /etc/default/named
+    regexp: '^OPTIONS='
+    line: 'OPTIONS="-u bind -4"'
+    backup: true
+
+- name: Copy bind configuration
+  ansible.builtin.copy:
+    src: named.conf.options
+    dest: /etc/bind/
+    mode: "0644"
+  register: bind_config
+
+- name: Restart named with new config
+  ansible.builtin.systemd_service:
+    name: named
+    state: restarted
+  when: bind_config.changed
+
+- name: Check if /etc/resolv.conf is symlink
+  ansible.builtin.stat:
+    name: /etc/resolv.conf
+  register: resolv_conf
+
+- name: Copy resolv.conf
+  ansible.builtin.copy:
+    src: resolv.conf
+    dest: /etc/resolv.conf
+    mode: "0777"
+  when: resolv_conf.stat.islnk is defined and resolv_conf.stat.islnk
+
+- name: Stop systemd_resolver
+  ansible.builtin.systemd_service:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
+  when: resolv_conf.stat.islnk is defined and resolv_conf.stat.islnk

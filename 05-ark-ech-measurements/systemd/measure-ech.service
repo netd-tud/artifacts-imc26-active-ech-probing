@@ -1,0 +1,9 @@
+[Unit]
+Description=ECH Measurement Job
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/jmuecke/ark_ech_measurement
+ExecStart=/usr/bin/make measure raw_data_dir=raw

@@ -1,0 +1,4 @@
+- name: Build zdns
+  ansible.builtin.command:
+    cmd: go build
+    chdir: "{{ data_dir }}/{{ folder }}/zdns"

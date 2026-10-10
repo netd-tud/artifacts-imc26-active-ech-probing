@@ -1,0 +1,6 @@
+[Wed Aug 12 14:48:27.309668 2026] [ssl:warn] [pid 1:tid 1] AH01906: a.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 14:48:27.309696 2026] [ssl:warn] [pid 1:tid 1] AH01909: a.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Aug 12 14:48:27.311009 2026] [ssl:warn] [pid 1:tid 1] AH01906: a.example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 14:48:27.311020 2026] [ssl:warn] [pid 1:tid 1] AH01909: a.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Aug 12 14:48:27.311699 2026] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.67 (Unix) OpenSSL/3.5.6 configured -- resuming normal operations
+[Wed Aug 12 14:48:27.311706 2026] [core:notice] [pid 1:tid 1] AH00094: Command line: 'httpd -D FOREGROUND'

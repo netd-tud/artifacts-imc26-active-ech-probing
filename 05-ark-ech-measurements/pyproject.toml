@@ -1,0 +1,21 @@
+[project]
+name = "ark_ech_measurement"
+version = "0.1.0"
+description = "Measurement routines and parser for ECH connections via CAIDA ARK"
+requires-python = ">=3.10"
+dependencies = [
+    "loguru>=0.7.3",
+    "polars>=1.39.3",
+    "typer>=0.24.1",
+    "scamper>=20260420",
+]
+
+[tool.uv]
+package = true
+
+[project.scripts]
+measure = "ark_ech_measurement.measure:app"
+analyze = "ark_ech_measurement.analyze:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
